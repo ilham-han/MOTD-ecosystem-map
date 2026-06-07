@@ -51,6 +51,10 @@
               Niche
               <textarea id="organism-notes" rows="3" placeholder="What it eats, where it lives, why it matters"></textarea>
             </label>
+            <label>
+              Creature image
+              <input id="organism-image" type="file" accept="image/*" />
+            </label>
             <button class="primary" type="submit">Add to map</button>
           </form>
         </section>
@@ -104,14 +108,25 @@
             <p id="map-summary">Start with organisms, then connect predator, prey, parasite, and symbiote relationships.</p>
           </div>
           <div class="mode-switch" aria-label="Map view controls">
+            <button id="toggle-sidebar" type="button">Hide left</button>
+            <button id="toggle-inspector" type="button">Hide right</button>
+            <button id="focus-canvas" type="button">Canvas only</button>
             <button id="arrange-map" type="button">Arrange</button>
             <button id="toggle-labels" type="button" aria-pressed="true">Labels on</button>
           </div>
         </header>
 
-        <section class="canvas-wrap" aria-label="Ecosystem map canvas">
-          <svg id="map-lines" aria-hidden="true"></svg>
-          <div id="map-canvas"></div>
+        <section id="canvas-viewport" class="canvas-wrap" aria-label="Ecosystem map canvas">
+          <div id="map-stage">
+            <svg id="map-lines" aria-hidden="true"></svg>
+            <div id="map-canvas"></div>
+          </div>
+          <div class="zoom-controls" aria-label="Zoom controls">
+            <button id="zoom-out" type="button">-</button>
+            <span id="zoom-level">100%</span>
+            <button id="zoom-in" type="button">+</button>
+            <button id="zoom-reset" type="button">Reset</button>
+          </div>
           <div class="legend">
             <span><i class="producer"></i>Producer</span>
             <span><i class="herbivore"></i>Herbivore</span>
@@ -149,6 +164,11 @@
               Niche notes
               <textarea id="detail-notes" rows="6"></textarea>
             </label>
+            <label>
+              Creature image
+              <input id="detail-image" type="file" accept="image/*" />
+            </label>
+            <button id="remove-image" type="button">Remove image</button>
             <div class="button-row">
               <button class="primary" type="submit">Save</button>
               <button id="delete-organism" class="danger" type="button">Delete</button>
