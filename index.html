@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="MOTD Ecosystem Map is a speculative evolution and alien horror food-web builder for worldbuilding creators."
+    />
+    <meta property="og:title" content="MOTD Ecosystem Map" />
+    <meta
+      property="og:description"
+      content="Build speculative ecosystems, connect creatures, and export your worldbuilding map."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#172018" />
+    <title>MOTD Ecosystem Map</title>
+    <link rel="manifest" href="./site.webmanifest" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">M</div>
+          <div>
+            <h1>MOTD Ecosystem Map</h1>
+            <p>Build food webs for speculative worlds.</p>
+          </div>
+        </div>
+
+        <section class="panel">
+          <h2>Add Organism</h2>
+          <form id="organism-form">
+            <label>
+              Name
+              <input id="organism-name" type="text" placeholder="Crystal ant queen" required />
+            </label>
+            <label>
+              Role
+              <select id="organism-role">
+                <option value="producer">Producer</option>
+                <option value="herbivore">Herbivore</option>
+                <option value="predator">Predator</option>
+                <option value="parasite">Parasite</option>
+                <option value="decomposer">Decomposer</option>
+                <option value="apex">Apex threat</option>
+              </select>
+            </label>
+            <label>
+              Niche
+              <textarea id="organism-notes" rows="3" placeholder="What it eats, where it lives, why it matters"></textarea>
+            </label>
+            <button class="primary" type="submit">Add to map</button>
+          </form>
+        </section>
+
+        <section class="panel">
+          <h2>Add Relationship</h2>
+          <form id="link-form">
+            <label>
+              From
+              <select id="link-source"></select>
+            </label>
+            <label>
+              Relationship
+              <select id="link-type">
+                <option value="eats">eats</option>
+                <option value="pollinates">pollinates</option>
+                <option value="hosts">hosts</option>
+                <option value="infects">infects</option>
+                <option value="competes with">competes with</option>
+                <option value="protects">protects</option>
+              </select>
+            </label>
+            <label>
+              To
+              <select id="link-target"></select>
+            </label>
+            <button class="secondary" type="submit">Connect</button>
+          </form>
+        </section>
+
+        <section class="panel compact">
+          <h2>Project</h2>
+          <div class="button-row">
+            <button id="seed-world" type="button">Load Ant World</button>
+            <button id="clear-world" type="button">Clear</button>
+          </div>
+          <div class="button-row">
+            <button id="export-world" type="button">Export JSON</button>
+            <label class="file-button">
+              Import
+              <input id="import-world" type="file" accept="application/json" />
+            </label>
+          </div>
+        </section>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div>
+            <h2>The World of Ant ecosystem draft</h2>
+            <p id="map-summary">Start with organisms, then connect predator, prey, parasite, and symbiote relationships.</p>
+          </div>
+          <div class="mode-switch" aria-label="Map view controls">
+            <button id="arrange-map" type="button">Arrange</button>
+            <button id="toggle-labels" type="button" aria-pressed="true">Labels on</button>
+          </div>
+        </header>
+
+        <section class="canvas-wrap" aria-label="Ecosystem map canvas">
+          <svg id="map-lines" aria-hidden="true"></svg>
+          <div id="map-canvas"></div>
+          <div class="legend">
+            <span><i class="producer"></i>Producer</span>
+            <span><i class="herbivore"></i>Herbivore</span>
+            <span><i class="predator"></i>Predator</span>
+            <span><i class="parasite"></i>Parasite</span>
+            <span><i class="decomposer"></i>Decomposer</span>
+            <span><i class="apex"></i>Apex</span>
+          </div>
+        </section>
+      </main>
+
+      <aside class="inspector">
+        <section class="panel detail">
+          <h2>Selected Organism</h2>
+          <div id="empty-detail" class="empty-state">
+            Select a creature or plant on the map to inspect its role.
+          </div>
+          <form id="detail-form" class="hidden">
+            <label>
+              Name
+              <input id="detail-name" type="text" />
+            </label>
+            <label>
+              Role
+              <select id="detail-role">
+                <option value="producer">Producer</option>
+                <option value="herbivore">Herbivore</option>
+                <option value="predator">Predator</option>
+                <option value="parasite">Parasite</option>
+                <option value="decomposer">Decomposer</option>
+                <option value="apex">Apex threat</option>
+              </select>
+            </label>
+            <label>
+              Niche notes
+              <textarea id="detail-notes" rows="6"></textarea>
+            </label>
+            <div class="button-row">
+              <button class="primary" type="submit">Save</button>
+              <button id="delete-organism" class="danger" type="button">Delete</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="panel">
+          <h2>Worldbuilding Checks</h2>
+          <ul id="checks" class="checks"></ul>
+        </section>
+      </aside>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

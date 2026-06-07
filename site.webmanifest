@@ -1,0 +1,9 @@
+{
+  "name": "MOTD Ecosystem Map",
+  "short_name": "MOTD Map",
+  "description": "A speculative evolution ecosystem map builder for worldbuilding creators.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#172018",
+  "theme_color": "#172018"
+}
